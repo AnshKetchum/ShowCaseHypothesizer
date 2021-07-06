@@ -10,10 +10,56 @@ body {
   min-height: 100vh;
 }
 
-chicken {
-  text-align: center;
+.app {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
-form {
-  height: 300px;
+/* Title Header */
+.title-header {
+  text-align: center;
+  padding-top: 5%;
+}
+
+.title-header h1 {
+  font-size: 500%;
+}
+
+/* Todo Creation */
+.todo-creator {
+  text-align: center;
+  align-items: center;
+}
+
+.todo-creator p {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 150%;
+}
+
+/* Todos */
+.todos {
+  padding-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todos button {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.task-desc {
+  margin-right: 2%;
+}
+
+td {
+  padding: 3% 1% 0 0;
+}
+
+input {
+  width: 25%;
+  height: 50%;
+  padding-right: 2%;
 }
