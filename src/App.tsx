@@ -1,20 +1,6 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
-
-//Represents a single todo item
-interface Todo {
-  description: string;
-  key: number;
-  timeStarted: number;
-}
-
-//Props for the TodoItem function
-interface TodoProps {
-  todo: Todo;
-  onDelete(): void;
-  onUp(): void;
-  onDown(): void;
-}
+import {Todo, TodoProps} from './t'
 
 function upHandler(
   todo: Todo,
@@ -137,11 +123,15 @@ function App() {
   const [textInInput, updateText] = useState("");
   const [time, updateTime] = useState(0);
 
-  React.useEffect(() => {
-    setInterval(() => {
+  useEffect(() => {
+    const intervalID = setInterval(() => {
       updateTime((time) => time + 1);
     }, 1000);
-  }, []);
+
+    return () => {
+      clearInterval(intervalID)
+    }
+  }, [time]);
 
   /* React.useEffect(() => {            //buggy code
     setInterval(() => {
@@ -149,6 +139,18 @@ function App() {
     }, 1000);
     
   }); */
+  function handleTodos()
+  {
+      updateTodos(
+        todos.concat([
+          {
+            description: textInInput,
+            key: todos.length,
+            timeStarted: time,
+          },
+        ])
+      );
+  }
 
   return (
     <div className="app">
@@ -171,17 +173,7 @@ function App() {
           <button
             type="button"
             className="bg-blue-500 text-white px-6 py-2 rounded font-medium mx-3 hover:bg-blue-600 transition duration-200 each-in-out"
-            onClick={() => {
-              updateTodos(
-                todos.concat([
-                  {
-                    description: textInInput,
-                    key: todos.length,
-                    timeStarted: time,
-                  },
-                ])
-              );
-            }}
+            onClick={handleTodos}
           >
             {" "}
             Add Todo{" "}
