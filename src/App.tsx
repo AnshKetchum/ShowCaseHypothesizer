@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./App.css";
+import Clock from 'react-live-clock';
 
 //Represents a single todo item
 interface Todo {
   description: string;
   key: number;
-  timeStarted: number;
+  timeStarted: string;
 }
 
 //Props for the TodoItem function
@@ -18,11 +19,11 @@ interface TodoProps {
 
 function upHandler(
   todo: Todo,
-  todos: { description: string; key: number; timeStarted: number }[],
+  todos: { description: string; key: number; timeStarted: string }[],
   updateTodos: {
     (
       value: React.SetStateAction<
-        { description: string; key: number; timeStarted: number }[]
+        { description: string; key: number; timeStarted: string }[]
       >
     ): void;
     (arg0: (array: Todo[]) => Todo[]): void;
@@ -51,11 +52,11 @@ function upHandler(
 
 function downHandler(
   todo: Todo,
-  todos: { description: string; key: number; timeStarted: number }[],
+  todos: { description: string; key: number; timeStarted: string }[],
   updateTodos: {
     (
       value: React.SetStateAction<
-        { description: string; key: number; timeStarted: number }[]
+        { description: string; key: number; timeStarted: string }[]
       >
     ): void;
     (arg0: (array: Todo[]) => Todo[]): void;
@@ -132,23 +133,34 @@ function TodoItem(props: TodoProps) {
 
 function App() {
   const [todos, updateTodos] = useState([
-    { description: " ", key: 0, timeStarted: 0 },
+    { description: " ", key: 0, timeStarted: " " },
   ]);
   const [textInInput, updateText] = useState("");
-  const [time, updateTime] = useState(0);
+  const [time, updateTime] = useState("");
+
+  var d = new Date();
 
   React.useEffect(() => {
-    setInterval(() => {
-      updateTime((time) => time + 1);
-    }, 1000);
-  }, []);
 
-  /* React.useEffect(() => {            //buggy code
-    setInterval(() => {
-      updateTime(time + 1);
-    }, 1000);
-    
-  }); */
+    const intervalID = setInterval(() => {
+      d = new Date();
+      updateTime(d.toString());
+    }, 100);
+    return () => {
+      clearInterval(intervalID)
+    }
+  }, [time]);
+
+  /*React.useEffect(() => {
+
+    const intervalID = setInterval(() => {            //buggy implementation
+      updateTime(d.toString());
+      console.log(time);
+    }, 100);
+    return () => {
+      clearInterval(intervalID)
+    }
+  }, [time]);*/ 
 
   return (
     <div className="app">
@@ -157,7 +169,7 @@ function App() {
       </header>
 
       <div className="todo-creator">
-        <span className="text-xl"> Seconds: {time} </span>
+      <span className="text-xl"> {time} </span>
         <div className="form">
           <input
             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
