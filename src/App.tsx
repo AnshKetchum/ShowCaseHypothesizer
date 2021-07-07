@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import "./App.css";
-<<<<<<< HEAD
 import Clock from 'react-live-clock';
 
 //Represents a single todo item
@@ -17,9 +16,6 @@ interface TodoProps {
   onUp(): void;
   onDown(): void;
 }
-=======
-import {Todo, TodoProps} from './t'
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
 
 function upHandler(
   todo: Todo,
