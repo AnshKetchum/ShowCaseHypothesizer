@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import Clock from 'react-live-clock';
+import Clock from "react-live-clock";
 
 //Represents a single todo item
 interface Todo {
@@ -140,26 +140,28 @@ function App() {
 
   var d = new Date();
 
-<<<<<<< HEAD
   React.useEffect(() => {
-
     const intervalID = setInterval(() => {
-      d = new Date();
-      updateTime(d.toString());
+      const date = new Date();
+      const [month, day, year] = [
+        date.getMonth(),
+        date.getDate(),
+        date.getFullYear(),
+      ];
+      const [hour, minutes, seconds] = [
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds(),
+      ];
+      updateTime(
+        `Time: ${hour}:${minutes}:${seconds}, Date: ${month}/${day}/${year}`
+      );
     }, 100);
-=======
-  useEffect(() => {
-    const intervalID = setInterval(() => {
-      updateTime((time) => time + 1);
-    }, 1000);
-
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
     return () => {
-      clearInterval(intervalID)
-    }
+      clearInterval(intervalID);
+    };
   }, [time]);
 
-<<<<<<< HEAD
   /*React.useEffect(() => {
 
     const intervalID = setInterval(() => {            //buggy implementation
@@ -169,28 +171,18 @@ function App() {
     return () => {
       clearInterval(intervalID)
     }
-  }, [time]);*/ 
-=======
-  /* React.useEffect(() => {            //buggy code
-    setInterval(() => {
-      updateTime(time + 1);
-    }, 1000);
-    
-  }); */
-  function handleTodos()
-  {
-      updateTodos(
-        todos.concat([
-          {
-            description: textInInput,
-            key: todos.length,
-            timeStarted: time,
-          },
-        ])
-      );
-  }
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
-
+  }, [time]);*/
+  const handleTodos = () => {
+    updateTodos(
+      todos.concat([
+        {
+          description: textInInput,
+          key: todos.length,
+          timeStarted: time,
+        },
+      ])
+    );
+  };
   return (
     <div className="app">
       <header className="title-header">
@@ -198,7 +190,7 @@ function App() {
       </header>
 
       <div className="todo-creator">
-      <span className="text-xl"> {time} </span>
+        <span className="text-xl"> {time} </span>
         <div className="form">
           <input
             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
