@@ -140,14 +140,25 @@ function App() {
   var d = new Date();
 
   React.useEffect(() => {
-
     const intervalID = setInterval(() => {
-      d = new Date();
-      updateTime(d.toString());
+      const date = new Date();
+      const [month, day, year] = [
+        date.getMonth(),
+        date.getDate(),
+        date.getFullYear(),
+      ];
+      const [hour, minutes, seconds] = [
+        date.getHours(),
+        date.getMinutes(),
+        date.getSeconds(),
+      ];
+      updateTime(
+        `Time: ${hour}:${minutes}:${seconds}, Date: ${month}/${day}/${year}`
+      );
     }, 100);
     return () => {
-      clearInterval(intervalID)
-    }
+      clearInterval(intervalID);
+    };
   }, [time]);
 
   /*React.useEffect(() => {
@@ -180,7 +191,7 @@ function App() {
       </header>
 
       <div className="todo-creator">
-      <span className="text-xl"> {time} </span>
+        <span className="text-xl"> {time} </span>
         <div className="form">
           <input
             className="shadow appearance-none border rounded w-half py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
