@@ -1,7 +1,5 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
-<<<<<<< HEAD
-import Clock from 'react-live-clock';
 
 //Represents a single todo item
 interface Todo {
@@ -17,9 +15,6 @@ interface TodoProps {
   onUp(): void;
   onDown(): void;
 }
-=======
-import {Todo, TodoProps} from './t'
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
 
 function upHandler(
   todo: Todo,
@@ -144,26 +139,17 @@ function App() {
 
   var d = new Date();
 
-<<<<<<< HEAD
   React.useEffect(() => {
 
     const intervalID = setInterval(() => {
       d = new Date();
       updateTime(d.toString());
     }, 100);
-=======
-  useEffect(() => {
-    const intervalID = setInterval(() => {
-      updateTime((time) => time + 1);
-    }, 1000);
-
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
     return () => {
       clearInterval(intervalID)
     }
   }, [time]);
 
-<<<<<<< HEAD
   /*React.useEffect(() => {
 
     const intervalID = setInterval(() => {            //buggy implementation
@@ -174,13 +160,6 @@ function App() {
       clearInterval(intervalID)
     }
   }, [time]);*/ 
-=======
-  /* React.useEffect(() => {            //buggy code
-    setInterval(() => {
-      updateTime(time + 1);
-    }, 1000);
-    
-  }); */
   function handleTodos()
   {
       updateTodos(
@@ -193,7 +172,6 @@ function App() {
         ])
       );
   }
->>>>>>> 73bcea60bbace970767fab4f25123cd218af00cb
 
   return (
     <div className="app">

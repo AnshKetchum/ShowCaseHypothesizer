@@ -3,7 +3,7 @@
 export interface Todo {
   description: string;
   key: number;
-  timeStarted: number;
+  timeStarted: string;
 }
 
 //Props for the TodoItem function
